@@ -1,4 +1,4 @@
-// Copyright (c) 2017, the Dart Reddit API Wrapper project authors.
+// Copyright (c) 2019, the Dart Reddit API Wrapper project authors.
 // Please see the AUTHORS file for details. All rights reserved.
 // Use of this source code is governed by a BSD-style license that
 // can be found in the LICENSE file.
@@ -338,6 +338,30 @@ class Reddit {
     return Reddit._webFlowInstanceRestore(
         clientId,
         clientSecret,
+        userAgent,
+        credentialsJson,
+        redirectUri,
+        tokenEndpoint,
+        authEndpoint,
+        configUri,
+        siteName);
+  }
+
+  static Reddit restoreInstalledAuthenticatedInstance(String credentialsJson,
+      {String clientId,
+      String clientSecret,
+      String userAgent,
+      Uri redirectUri,
+      Uri tokenEndpoint,
+      Uri authEndpoint,
+      Uri configUri,
+      String siteName = 'default'}) {
+    if (credentialsJson == null) {
+      throw DRAWArgumentError('credentialsJson cannot be null.');
+    }
+    return Reddit._webFlowInstanceRestore(
+        clientId,
+        '',
         userAgent,
         credentialsJson,
         redirectUri,
